@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paper · Ivy Lu</title>
+<meta name="description" content="A research paper by Ivy Lu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Hanken+Grotesk:wght@400;500;700&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#000;
+  --paper:#e7e4dd;
+  --paper-2:#f5f3ee;
+  --grey:#9b9993;
+  --ink:#1b1b1a;
+  --soft:#6f6d68;
+  --script:"Pinyon Script","Snell Roundhand","Brush Script MT",cursive;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  --mono:"Courier New",Courier,monospace;
+}
+*{box-sizing:border-box;margin:0}
+body{background:var(--black);color:var(--paper);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+a:focus-visible{outline:2px solid var(--paper);outline-offset:4px}
+
+/* small corner labels */
+.label{position:absolute;z-index:20;font-size:11px;letter-spacing:.09em;text-transform:uppercase;line-height:1.5;color:var(--grey)}
+.label.tl{top:22px;left:24px}
+.label.tr{top:22px;right:24px;text-align:right}
+.label b{display:block;font-weight:700;color:var(--paper)}
+.label a{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px;transition:color .2s}
+.label a:hover{color:#fff}
+
+/* ASCII decoration */
+pre.ascii{font-family:var(--mono);white-space:pre;user-select:none;overflow:hidden}
+.doily{position:fixed;right:-170px;bottom:-170px;z-index:0;opacity:.3;pointer-events:none}
+.doily pre.ascii{font-size:7px;line-height:7px;color:#fbfaf7}
+.rule{font-family:var(--mono);font-size:11px;line-height:1.2;color:#55534f;white-space:pre;text-align:center;overflow:hidden;margin-top:6px}
+
+/* page */
+.page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:34px;padding:96px 20px 56px}
+.title{font-family:var(--script);font-weight:400;font-size:clamp(64px,11vw,110px);line-height:1;color:var(--grey);text-align:center}
+
+/* paper card holding the pdf */
+.card{position:relative;width:min(100%,860px);padding:18px;background:var(--paper-2);color:var(--ink);box-shadow:0 18px 40px rgba(0,0,0,.55)}
+.tape{position:absolute;top:-12px;left:50%;width:84px;height:24px;margin-left:-42px;background:rgba(220,216,206,.78);transform:rotate(-3deg);box-shadow:0 1px 3px rgba(0,0,0,.2);z-index:3}
+.tracing{position:absolute;top:-30px;left:-18px;z-index:4;max-width:min(300px,70%);padding:12px 16px 14px;transform:rotate(-2deg);background:rgba(245,243,238,.85);border:1px solid rgba(255,255,255,.7);backdrop-filter:blur(1.5px);-webkit-backdrop-filter:blur(1.5px);box-shadow:0 6px 18px rgba(0,0,0,.4);font-size:11px;letter-spacing:.09em;text-transform:uppercase;line-height:1.5}
+.tracing b{display:block;font-weight:700}
+.tracing span{color:var(--soft)}
+.viewer{display:block;width:100%;height:min(82vh,1100px);min-height:520px;background:#fff;border:1px solid rgba(0,0,0,.12)}
+.fallback{padding:40px 24px;text-align:center;font-family:var(--serif);font-size:19px;line-height:1.5}
+
+/* written summary card under the pdf */
+.summary{position:relative;width:min(100%,640px);padding:56px 46px 50px;background:var(--paper-2);color:var(--ink);box-shadow:0 18px 40px rgba(0,0,0,.55);transform:rotate(-.6deg)}
+.summary h2{font-family:var(--script);font-weight:400;font-size:clamp(52px,8vw,76px);line-height:1;color:var(--grey);margin-bottom:22px}
+.summary p{font-family:var(--serif);font-size:19px;line-height:1.6}
+.summary p+p{margin-top:16px}
+
+.links{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 22px;font-size:13px;color:var(--grey)}
+.links a{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.links a:hover{color:#fff}
+
+@media (max-width:640px){
+  .label.tr{display:none}
+  .card{padding:10px}
+  .viewer{min-height:460px}
+  .summary{padding:48px 26px 40px}
+}
+</style>
+</head>
+<body>
+
+<div class="label tl"><a href="index.html">&larr; portfolio</a></div>
+<div class="label tr"><b>ivy lu</b>paper</div>
+<div class="doily" aria-hidden="true"><pre class="ascii" data-doily="30"></pre></div>
+
+<main class="page">
+  <h1 class="title">Paper</h1>
+
+  <div class="card">
+    <span class="tape" aria-hidden="true"></span>
+    <div class="tracing"><b>Evaluation of Antivirus Malware Detection Diversity</b><span>2026</span></div>
+
+    <object class="viewer" data="assets/AVAMAT_2026.pdf" type="application/pdf" aria-label="Paper PDF">
+      <p class="fallback">Your browser can't show the paper here.<br><a href="assets/AVAMAT_2026.pdf">Open the PDF</a></p>
+    </object>
+  </div>
+
+  <div class="summary">
+    <span class="tape" aria-hidden="true"></span>
+    <h2>About the Paper</h2>
+    <p>The final artifact I chose to include is a research paper I contributed to as a research intern under Dr. Michel Cukier at the University of Maryland. My work focused on automating malware analysis in virtual machines and evaluating how effectively different antivirus (AV) products detect malicious files. We developed a framework to test malware samples in isolated Windows environments and record when each product detected a threat. Using a shared dataset of 2,000 malware samples, we compared AVG, Norton, and Bitdefender based on their detection rates, detection stages, and time to detection. Our findings showed that detection rates alone don't tell the whole story, as products can differ significantly in when and how quickly they identify threats.</p>
+    <p>I included this paper because it represents one of my most substantial technical research experiences. Through this work, I gained experience developing automation scripts, working with virtual machines, designing repeatable experiments, and analyzing data. One of my biggest takeaways was learning how much information can be overlooked when looking at data in aggregate. This experience strengthened my interest in systems, data analysis, and cybersecurity while teaching me to approach problems methodically and use data to support conclusions. It also gave me the opportunity to collaborate on research and contribute to a formal publication.</p>
+  </div>
+
+  <div class="links">
+    <a href="assets/AVAMAT_2026.pdf" target="_blank" rel="noopener">open the pdf in a new tab</a>
+    <a href="assets/AVAMAT_2026.pdf" download>download</a>
+    <a href="index.html">&larr; back to portfolio</a>
+  </div>
+
+  <pre class="rule" aria-hidden="true">. · . · . · . · . · . · . · . · . · . · . · . · . · . ·</pre>
+</main>
+
+<script>
+/* ASCII lace rosette */
+(function(){
+  document.querySelectorAll("[data-doily]").forEach(function(el){
+    var R=+el.dataset.doily,out="";
+    for(var y=-R;y<=R;y++){
+      var row="";
+      for(var x=-2*R;x<=2*R;x++){
+        var nx=x/2,d=Math.sqrt(nx*nx+y*y)/R;
+        if(d>1){row+=" ";continue}
+        var a=Math.atan2(y,nx),c;
+        if(d>.9)c=(Math.round(a*18/Math.PI)%2===0)?"o":"O";
+        else if(d>.84)c="*";
+        else{
+          var v=Math.sin(d*26)*Math.cos(a*12)+Math.cos(d*14+a*6)*.6;
+          c=v>.9?"@":v>.45?"O":v>0?"o":v>-.5?"*":v>-.9?".":" ";
+          if(d<.07)c="@";
+        }
+        row+=c;
+      }
+      out+=row+"\n";
+    }
+    el.textContent=out;
+  });
+})();
+</script>
+</body>
+</html>
