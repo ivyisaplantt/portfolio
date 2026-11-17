@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Photography · Ivy Lu</title>
+<meta name="description" content="Photography by Ivy Lu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Hanken+Grotesk:wght@400;500;700&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#000;
+  --paper:#e7e4dd;
+  --paper-2:#f5f3ee;
+  --grey:#9b9993;
+  --ink:#1b1b1a;
+  --soft:#6f6d68;
+  --script:"Pinyon Script","Snell Roundhand","Brush Script MT",cursive;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  --mono:"Courier New",Courier,monospace;
+  --card-w:clamp(190px,24vw,320px); /* size of the centered (largest) photo */
+}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{background:var(--black);color:var(--paper);font-family:var(--sans);overflow:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:focus-visible,.card:focus-visible{outline:2px solid var(--paper);outline-offset:5px}
+
+/* small corner labels */
+.label{position:fixed;z-index:20;font-size:11px;letter-spacing:.09em;text-transform:uppercase;line-height:1.5;color:var(--grey)}
+.label.tl{top:22px;left:24px}
+.label.tr{top:22px;right:24px;text-align:right}
+.label.br{bottom:24px;right:24px;text-align:right}
+.label.br b{display:block;font-weight:700;color:var(--paper)}
+.label a{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px;transition:color .2s}
+.label a:hover{color:#fff}
+
+/* tracing-paper note with the current photo's info */
+.note{position:fixed;left:24px;bottom:24px;z-index:20;width:min(250px,46vw);padding:14px 16px 16px;transform:rotate(-1.5deg);background:rgba(245,243,238,.82);border:1px solid rgba(255,255,255,.7);backdrop-filter:blur(1.5px);-webkit-backdrop-filter:blur(1.5px);box-shadow:0 6px 18px rgba(0,0,0,.4);color:var(--ink);font-size:11px;letter-spacing:.09em;text-transform:uppercase;line-height:1.5}
+.note .count{display:block;margin-bottom:8px;color:var(--soft)}
+.note b{display:block;font-weight:700}
+.note span{color:var(--soft)}
+
+/* big faint script word behind the photos */
+.ghost{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--script);font-size:clamp(90px,17vw,250px);color:#1a1a19;pointer-events:none;user-select:none;z-index:0;line-height:1}
+
+/* ASCII decoration */
+pre.ascii{font-family:var(--mono);white-space:pre;user-select:none;overflow:hidden}
+.doily{position:fixed;right:-170px;bottom:-170px;z-index:1;opacity:.3;pointer-events:none}
+.doily pre.ascii{font-size:7px;line-height:7px;color:#fbfaf7}
+.rule{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:6;font-family:var(--mono);font-size:11px;line-height:1.2;color:#55534f;white-space:pre;pointer-events:none}
+
+/* carousel: each photo is a taped polaroid */
+.stage{position:fixed;inset:0;z-index:5;touch-action:pan-y;cursor:grab}
+.card{position:absolute;left:50%;top:50%;width:var(--card-w);aspect-ratio:4/5;padding:0;border:0;background:none;font:inherit;color:inherit;text-align:left;cursor:pointer;perspective:1100px;will-change:transform,opacity}
+.flip-in{display:block;position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.4,.1,.2,1)}
+.card.flipped .flip-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;display:block;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:#f6f4ef;box-shadow:0 14px 30px rgba(0,0,0,.5);color:var(--ink)}
+.front::before{content:"";position:absolute;top:-12px;left:50%;width:76px;height:22px;margin-left:-38px;background:rgba(220,216,206,.78);transform:rotate(-3deg);box-shadow:0 1px 3px rgba(0,0,0,.2);z-index:2}
+.front img,.ph{position:absolute;left:10px;top:10px;width:calc(100% - 20px);height:calc(100% - 48px)}
+.front img{object-fit:cover}
+.ph{display:flex;align-items:center;justify-content:center;background:#cdc9c1;color:#aaa69e;font-family:var(--serif);font-size:44px}
+.cap{position:absolute;left:12px;right:12px;bottom:8px;font-family:var(--script);font-size:22px;line-height:1.1;color:var(--soft);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.back{transform:rotateY(180deg);display:flex;align-items:center;justify-content:center;padding:9%;background:var(--paper-2)}
+.desc{display:block;text-align:center;font-family:var(--serif);font-size:clamp(14px,1.3vw,18px);line-height:1.45}
+.desc b{display:block;font-family:var(--sans);font-size:11px;letter-spacing:.09em;text-transform:uppercase;margin-bottom:4px}
+.desc em{display:block;font-style:normal;font-size:.85em;color:var(--soft);margin-bottom:14px}
+
+@media (max-width:900px){.rule{display:none}}
+@media (max-width:640px){
+  :root{--card-w:60vw}
+  .label.tr{display:none}
+}
+@media (prefers-reduced-motion:reduce){.flip-in{transition:none}}
+</style>
+</head>
+<body>
+
+<div class="label tl"><a href="index.html">&larr; portfolio</a></div>
+<div class="label tr">scroll to browse<br>click the photo to flip</div>
+<div class="note" aria-live="polite">
+  <span class="count" id="count">(01)</span>
+  <b id="title"></b>
+  <span id="place"></span>
+</div>
+<div class="label br"><b>ivy lu</b><span>photography</span></div>
+<div class="doily" aria-hidden="true"><pre class="ascii" data-doily="30"></pre></div>
+<pre class="rule" aria-hidden="true">. · . · . · . · . · . · . · . · . · . · . · . · . · . ·</pre>
+
+<div class="stage" id="stage">
+    <button class="card" type="button" aria-label="Photo 1: tap to flip">
+      <span class="flip-in">
+        <span class="face front"><span class="ph">01</span><img src="assets/photos/hike.JPG" alt="Describe photo 1 here" onerror="this.style.display='none'"></span>
+        <span class="face back"><span class="desc"><b>hike</b><em>seattle · august 2026</em><span>i was so unbelievely sore after this...</span></span></span>
+      </span>
+    </button>
+    <button class="card" type="button" aria-label="Photo 2: tap to flip">
+      <span class="flip-in">
+        <span class="face front"><span class="ph">02</span><img src="assets/photos/spiderweb.JPG" alt="Describe photo 2 here" onerror="this.style.display='none'"></span>
+        <span class="face back"><span class="desc"><b>spider web</b><em>seattle · august 2026</em><span>this was such a cool picture.</span></span></span>
+      </span>
+    </button>
+    <button class="card" type="button" aria-label="Photo 3: tap to flip">
+      <span class="flip-in">
+        <span class="face front"><span class="ph">03</span><img src="assets/photos/waterfall.JPG" alt="Describe photo 3 here" onerror="this.style.display='none'"></span>
+        <span class="face back"><span class="desc"><b>waterfall</b><em>seattle · august 2026</em><span>seattle is so pretty! (was visiting my partner at the time)</span></span></span>
+      </span>
+    </button>
+    <button class="card" type="button" aria-label="Photo 4: tap to flip">
+      <span class="flip-in">
+        <span class="face front"><span class="ph">04</span><img src="assets/photos/omakase.jpg" alt="Describe photo 4 here" onerror="this.style.display='none'"></span>
+        <span class="face back"><span class="desc"><b>omakase</b><em>seattle · august 2026</em><span>my first omakase!! the chef was very chill and the appetizers were amazinggg!</span></span></span>
+      </span>
+    </button>
+    <button class="card" type="button" aria-label="Photo 5: tap to flip">
+      <span class="flip-in">
+        <span class="face front"><span class="ph">05</span><img src="assets/photos/nychinatown.JPG" alt="Describe photo 5 here" onerror="this.style.display='none'"></span>
+        <span class="face back"><span class="desc"><b>new york chinatown</b><em>new york · june 2027</em><span>was visiting my online friend in new york for juneteeth weekend... ate so much food here btw...</span></span></span>
+      </span>
+    </button>
+    <button class="card" type="button" aria-label="Photo 6: tap to flip">
+      <span class="flip-in">
+        <span class="face front"><span class="ph">06</span><img src="assets/photos/anju.jpg" alt="Describe photo 6 here" onerror="this.style.display='none'"></span>
+        <span class="face back"><span class="desc"><b>anju</b><em>anju · feb 2026</em><span>valentines dinner w/ my partner; lowk was very mid do not recommend but the colors in this picture are very pretty</span></span></span>
+      </span>
+    </button>
+    <button class="card" type="button" aria-label="Photo 7: tap to flip">
+      <span class="flip-in">
+        <span class="face front"><span class="ph">07</span><img src="assets/photos/statue.jpeg" alt="Describe photo 7 here" onerror="this.style.display='none'"></span>
+        <span class="face back"><span class="desc"><b>dupont circle statue</b><em>dc · june 2025</em><span>randomly went to dc for a sweet treat and took this picture. i remember staying up all of the previous night reading solo leveling.</span></span></span>
+      </span>
+    </button>
+    <button class="card" type="button" aria-label="Photo 8: tap to flip">
+      <span class="flip-in">
+        <span class="face front"><span class="ph">08</span><img src="assets/photos/illenium.jpg" alt="pink rave photo at illenium" onerror="this.style.display='none'"></span>
+        <span class="face back"><span class="desc"><b>illenium</b><em>dc · july 2025</em><span>my first rave!! not the best first experience but i really enjoy listening to edm/hyperpop and still go to raves occassionally; this past august i went to seven lions! </span></span></span>
+      </span>
+    </button>
+    <button class="card" type="button" aria-label="Photo 9: tap to flip">
+      <span class="flip-in">
+        <span class="face front"><span class="ph">09</span><img src="assets/photos/philly_bldg.jpg" alt="white castle-like building" onerror="this.style.display='none'"></span>
+        <span class="face back"><span class="desc"><b>philly building</b><em>philly · july 2025</em><span>went to visit my friend in philly for a few days. it was so fun eating and bouldering in a new city!</span></span></span>
+      </span>
+    </button>
+    <button class="card" type="button" aria-label="Photo 10: tap to flip">
+      <span class="flip-in">
+        <span class="face front"><span class="ph">10</span><img src="assets/photos/coral.jpeg" alt="very vibrant blue coral" onerror="this.style.display='none'"></span>
+        <span class="face back"><span class="desc"><b>coral</b><em>dc · may 2025</em><span>very very blue coral picture. went to the zoo with josephine on a rainy day so there wasn't any lines but also no animals LOL...</span></span></span>
+      </span>
+    </button>
+</div>
+
+<script>
+(function(){
+  var stage=document.getElementById("stage");
+  var cards=Array.prototype.slice.call(stage.querySelectorAll(".card"));
+  var n=cards.length;
+  var reduce=window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+  var pos=0,target=0,cur=-1,raf=null;
+  var TILT=[-3,2.2,-1.4,3,-2,1.6,-2.6,1.2,-1.8,2.6];
+
+  function clamp(v){return Math.max(0,Math.min(n-1,v))}
+
+  // places every card by its distance from the current position:
+  // the closest card is the largest, cards further away shrink and fade
+  function layout(){
+    var W=cards[0].offsetWidth,gap=Math.max(14,W*.06);
+    var d1=W*(.5+.5*.6)+gap, d2=W*(.5*.6+.5*.42)+gap;
+    cards.forEach(function(c,i){
+      var o=i-pos,a=Math.abs(o),sg=o<0?-1:1;
+      var s=Math.max(.42,1-.4*a);
+      var x=sg*(Math.min(a,1)*d1+Math.max(0,a-1)*d2);
+      var op=a<1?1-.3*a:Math.max(0,.7-(a-1)*.3);
+      var rot=TILT[i%TILT.length]*Math.min(1,a+.3);
+      c.style.transform="translate(-50%,-50%) translateX("+x.toFixed(1)+"px) scale("+s.toFixed(3)+") rotate("+rot.toFixed(2)+"deg)";
+      c.style.opacity=op.toFixed(2);
+      c.style.zIndex=100-Math.round(a*10);
+      c.style.visibility=a>4?"hidden":"visible";
+      c.style.pointerEvents=a>3.5?"none":"auto";
+    });
+  }
+
+  function tick(){
+    var diff=target-pos;
+    if(reduce||Math.abs(diff)<.002){pos=target;layout();raf=null;return}
+    pos+=diff*.14;layout();raf=requestAnimationFrame(tick);
+  }
+
+  function setCurrent(){
+    var c=Math.round(target);
+    if(c===cur)return;
+    cur=c;
+    cards.forEach(function(card,i){
+      card.classList.remove("flipped");
+      card.tabIndex=i===cur?0:-1;
+    });
+    var d=cards[cur].querySelector(".desc");
+    document.getElementById("count").textContent="("+("0"+(cur+1)).slice(-2)+")";
+    document.getElementById("title").textContent=d.querySelector("b").textContent;
+    document.getElementById("place").textContent=d.querySelector("em").textContent;
+  }
+
+  function goTo(i){
+    target=clamp(i);
+    setCurrent();
+    if(!raf)raf=requestAnimationFrame(tick);
+  }
+  function step(d){goTo(Math.round(target)+d)}
+
+  // mouse wheel / trackpad: one photo per flick
+  var acc=0,last=0,idle=null;
+  window.addEventListener("wheel",function(e){
+    e.preventDefault();
+    var d=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY;
+    acc+=d;
+    clearTimeout(idle);idle=setTimeout(function(){acc=0},200);
+    var now=Date.now();
+    if(Math.abs(acc)>=60&&now-last>200){step(acc>0?1:-1);acc=0;last=now}
+  },{passive:false});
+
+  // keyboard
+  window.addEventListener("keydown",function(e){
+    if(e.key==="ArrowRight"||e.key==="ArrowDown")step(1);
+    else if(e.key==="ArrowLeft"||e.key==="ArrowUp")step(-1);
+  });
+
+  // swipe / drag, and click: side photo centers it, center photo flips it
+  var sx=null,moved=false;
+  stage.addEventListener("pointerdown",function(e){sx=e.clientX;moved=false});
+  stage.addEventListener("pointermove",function(e){if(sx!==null&&Math.abs(e.clientX-sx)>12)moved=true});
+  stage.addEventListener("pointerup",function(e){
+    if(sx===null)return;
+    var dx=e.clientX-sx;sx=null;
+    if(Math.abs(dx)>40)step(dx<0?1:-1);
+  });
+  stage.addEventListener("pointercancel",function(){sx=null});
+  cards.forEach(function(card,i){
+    card.addEventListener("click",function(){
+      if(moved){moved=false;return}
+      if(i===cur)card.classList.toggle("flipped");
+      else goTo(i);
+    });
+  });
+
+  window.addEventListener("resize",layout);
+  // polaroid captions come from each photo's title on the back
+  cards.forEach(function(card){
+    var cap=document.createElement("span");
+    cap.className="cap";
+    cap.textContent=card.querySelector(".desc b").textContent;
+    card.querySelector(".front").appendChild(cap);
+  });
+
+  // ASCII lace rosette
+  document.querySelectorAll("[data-doily]").forEach(function(el){
+    var R=+el.dataset.doily,out="";
+    for(var y=-R;y<=R;y++){
+      var row="";
+      for(var x=-2*R;x<=2*R;x++){
+        var nx=x/2,d=Math.sqrt(nx*nx+y*y)/R;
+        if(d>1){row+=" ";continue}
+        var a=Math.atan2(y,nx),c;
+        if(d>.9)c=(Math.round(a*18/Math.PI)%2===0)?"o":"O";
+        else if(d>.84)c="*";
+        else{
+          var v=Math.sin(d*26)*Math.cos(a*12)+Math.cos(d*14+a*6)*.6;
+          c=v>.9?"@":v>.45?"O":v>0?"o":v>-.5?"*":v>-.9?".":" ";
+          if(d<.07)c="@";
+        }
+        row+=c;
+      }
+      out+=row+"\n";
+    }
+    el.textContent=out;
+  });
+
+  setCurrent();layout();
+})();
+</script>
+</body>
+</html>
