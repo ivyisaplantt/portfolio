@@ -68,6 +68,7 @@ pre.ascii{font-family:var(--mono);font-size:6px;line-height:6px;letter-spacing:0
   background:radial-gradient(circle,#7d7b76 52%,transparent 56%) 0 0/3px 3px;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .hero-year{font-family:var(--serif);font-size:clamp(26px,4vw,40px);position:absolute;right:26px;bottom:78px}
 .sheet .links{position:absolute;left:24px;right:24px;bottom:18px;justify-content:space-between;font-size:13px}
+.welcome{font-family:var(--serif);font-size:19px;line-height:1.5;margin:26px 4px 0;color:var(--ink)}
 .hero-side{position:relative;padding-top:6px;display:flex;flex-direction:column;align-items:center;gap:14px}
 .hero-side .polaroid{width:min(100%,260px);--r:3deg}
 .doily{position:absolute;right:-90px;bottom:-110px;z-index:1;color:#fff;opacity:.9;pointer-events:none}
@@ -157,7 +158,7 @@ footer .links{justify-content:center}
   <a href="#experience">experience</a>
   <a href="#about">about me</a>
   <a href="#hobbies">hobbies</a>
-  <!-- <a href="#projects">projects</a> -->
+  <a href="#projects">my work</a>
 </nav>
 
 <main>
@@ -178,11 +179,13 @@ footer .links{justify-content:center}
               <a href="mailto:ivylu21122@gmail.com">ivylu21122@gmail.com</a>
             </div>
           </div>
+          <!-- welcome section -->
+          <p class="welcome">Welcome! I'm a senior studying computer science and mathematics at UMD, and this portfolio brings together the work I'm proudest of: my internship and research experience, along with my photography and graphic design. I made it to show how I like to build, with curiosity, careful problem solving, and a focus on the people I'm building for. I'm currently exploring app development, and I hope to build consumer-facing products that make the world a little better.</p>
         </div>
         <div class="hero-side">
           <figure class="polaroid">
             <div class="photo">
-              <img src="assets/headshot.jpeg" alt="headshot of ivy Lu">
+              <img src="assets/headshot.jpeg" alt="Headshot of Ivy Lu">
             </div>
             <figcaption>Ivy Lu</figcaption>
           </figure>
@@ -203,7 +206,7 @@ footer .links{justify-content:center}
 <section aria-label="Experience and about me">
   <div class="spread paper">
     <img class="spread-bg" src="assets/binder.jpg" alt="">
-    
+
     <div class="page left" id="experience">
       <div class="ghost script" style="left:18px;top:8px" aria-hidden="true">Experience</div>
       <div style="height:min(18vw,140px)"></div>
@@ -213,45 +216,42 @@ footer .links{justify-content:center}
         <span>software engineer intern</span>
         <br>
         <span>june 2026 - august 2026</span>
-        <p class="small" style="margin-top:6px">Built a model that flags employee mental-health risk with 90% recall, plus a labeling tool to speed up its training data. Also built a FastAPI engine that converts credit bureau reports into one PostgreSQL database, cutting retrieval queries by 66%.</p>
+        <p class="small" style="margin-top:6px">Built a model that flags employee mental-health risk with 90% recall, along with a labeling tool that speeds up training-data creation. Also built a FastAPI engine that loads credit bureau reports into a single PostgreSQL database, cutting retrieval queries by 66%.</p>
       </div>
       <div class="entry">
         <b>university of maryland</b>
         <span>research intern</span>
         <br>
         <span>september 2025 - may 2026</span>
-        <p class="small" style="margin-top:6px">Contributed to AVAMAT, a tool that runs 3 antivirus engines in virtual machines to compare their detection speed on 2k malware samples. Paper submitted to ISSRE 2026.</p>
-        <b><a class="gallery-link" href="paper.html">my paper (THIS IS ONE OF MY ARTIFACT PLEASE CLICK HERE)</a> </b>
+        <p class="small" style="margin-top:6px">Contributed to AVAMAT, a research tool that runs three antivirus engines in virtual machines and compares their detection speed on 2,000 malware samples. The paper has been submitted to ISSRE 2026.</p>
+      </div>
+      <div class="entry">
+        <b>break through tech</b>
+        <span>software engineer intern</span>
+        <br>
+        <span>january 2025 - february 2025</span>
+        <p class="small" style="margin-top:6px">Built a web scraper and Flask API that pull live Trader Joe's and Lidl prices so shoppers can compare products.</p>
       </div>
     </div>
 
     <div class="page right" id="about">
       <figure class="polaroid about-photo">
         <div class="photo">
-            <img src="assets/about_me.jpeg">
+          <img src="assets/about_me.jpeg" alt="Photo of Ivy">
         </div>
       </figure>
       <div class="ghost script" style="right:18px;bottom:6px" aria-hidden="true">About Me</div>
       <div class="note small" style="width:58%">
         <img class="note-bg" src="assets/torn-paper.png" alt="">
-        <p>Hi! I'm Ivy and I'm a CS & Math dual major @ UMD.</p>
-        <p>Whether I'm working with data or developing software, I enjoy the process of turning ideas into something tangible.</p>
+        <p>Hi! I'm Ivy, a computer science and math double major at UMD.</p>
+        <p>Whether I'm working with data or building software, I enjoy turning ideas into something tangible.</p>
         <!-- <p>Currently seeking new grad software engineering roles for 2027.</p> -->
-
-      </div>
-
-      <div class="entry">
-        <b>break through tech</b>
-        <span>software engineer intern</span>
-        <br>
-        <span>january 2025 - february 2025</span>
-        <p class="small" style="margin-top:6px">Built a web scraper and Flask API that pulls live Trader Joe's and Lidl prices so shoppers can compare product pricing.</p>
       </div>
 
       <h2>education</h2>
       <div class="entry">
         <b>university of maryland, college park</b>
-        <span>cs & math · class of 2027</span>
+        <span>computer science & mathematics · class of 2027</span>
       </div>
       <br>
     </div>
@@ -265,57 +265,57 @@ footer .links{justify-content:center}
       <span class="tape" aria-hidden="true"></span>
       <h2 class="script">Hobbies</h2>
       <ul>
-        <li>photography!<a class="gallery-link" href="photography.html">open my photography gallery (THIS IS ONE OF MY ARTIFACT PLEASE CLICK HERE)</a> </li>
-        <li>graphic design!<a class="gallery-link" href="designs.html">open my design gallery (THIS IS ONE OF MY ARTIFACT PLEASE CLICK HERE)</a> </li>
-        <li>bouldering!</li>
-        <li>trying new restaurants! <a class="gallery-link" href="https://beliapp.co/profile/ivyisaplant">follow me on beli!</a> </li>
+        <li>photography · a reminder to slow down and notice the little things</li>
+        <li>graphic design · something that inspires me to create</li>
+        <li>bouldering · a reminder to keep moving</li>
+        <li>trying new restaurants · something that fuels my mind and body <a class="gallery-link" href="https://beliapp.co/profile/ivyisaplant">follow me on beli!</a> </li>
       </ul>
     </div>
     <div class="stack" aria-hidden="true">
       <figure class="polaroid p1">
         <div class="photo">
-            <img src="assets/photos/statue.jpeg"
-        </div></figure>
+          <img src="assets/photos/statue.jpeg" alt="">
+        </div>
+      </figure>
       <figure class="polaroid p2">
         <div class="photo">
-          <img src="assets/photos/philly_bldg.jpg">
-        </div></figure>
+          <img src="assets/photos/philly_bldg.jpg" alt="">
+        </div>
+      </figure>
       <figure class="polaroid p3">
         <div class="photo">
-          <img src="assets/photos/nychinatown.JPG">
-        </div><figcaption>photography</figcaption>
+          <img src="assets/photos/nychinatown.JPG" alt="">
+        </div>
+        <figcaption>photography</figcaption>
       </figure>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS
+<!-- MY WORK -->
 <section id="projects">
-  <h2 class="script projects-head">Projects</h2>
+  <h2 class="script projects-head">My Work</h2>
   <div class="proj-grid">
     <article class="paper proj">
       <span class="tape" aria-hidden="true"></span>
-      <h3>Brick Breaker</h3>
-      <p>An Android arcade game written in Kotlin, with a custom game view, a game loop, and collision handling for the ball, paddle, and bricks.</p>
-      <div class="stackline">Kotlin · Android</div>
-      <div class="links small"><a href="https://github.com/ivyisaplantt/REPO-NAME">view on github</a></div>
+      <h3>Photography Gallery</h3>
+      <p>A collection of photos I've taken over the past few years, primarily shot on a Canon IXUS 60.</p>
+      <div class="links small"><a href="photography.html">view the gallery</a></div>
     </article>
     <article class="paper proj">
       <span class="tape" aria-hidden="true"></span>
-      <h3>Balloon Pop</h3>
-      <p>An Android app where you pop balloons for points, with autocomplete input and data loaded from a server as JSON.</p>
-      <div class="stackline">Kotlin · Android</div>
-      <div class="links small"><a href="https://github.com/ivyisaplantt/REPO-NAME">view on github</a></div>
+      <h3>Design Portfolio</h3>
+      <p>A collection of graphics I've made for events and for the joy of creating, primarily designed in Canva.</p>
+      <div class="links small"><a href="designs.html">view the designs</a></div>
     </article>
     <article class="paper proj">
       <span class="tape" aria-hidden="true"></span>
-      <h3>Virtual DJ Mixing Station</h3>
-      <p>A Python mixing station with two decks, a crossfader, EQ, and beat sync. In progress.</p>
-      <div class="stackline">Python</div>
-      <div class="links small"><a href="https://github.com/ivyisaplantt/REPO-NAME">view on github</a></div>
+      <h3>Antivirus and Malware Analysis Paper</h3>
+      <p>A research paper I contributed to as a research intern at UMD.</p>
+      <div class="links small"><a href="paper.html">read the paper</a></div>
     </article>
   </div>
-</section> -->
+</section>
 
 </main>
 
@@ -323,7 +323,7 @@ footer .links{justify-content:center}
   <pre aria-hidden="true">. · . · . · . · . · . · . · . · . · . · . · . · . · . · . · . · . · .
   ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~</pre>
   <div class="links on-black">
-    <a href="resume.pdf">resume</a>
+    <a href="assets/resume.pdf">resume</a>
     <a href="https://github.com/ivyisaplantt">github</a>
     <a href="https://www.linkedin.com/in/ivyisaplant/">linkedin</a>
     <a href="mailto:ivylu21122@gmail.com">email</a>
